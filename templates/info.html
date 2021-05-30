@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>info</title>
+</head>
+<body>
+    <img src="http://big5.taiwan.cn/xwzx/PoliticsNews/201712/W020171226350972179329.jpg"/>
+    <ul>
+        {% for file in content %}
+            <p style="background-color:bisque;">
+            {{ file.text }}
+            </p>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% load pagination_tags %}
+{% autopaginate filelist %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>infolist</title>
+</head>
+<body>
+    <img src="http://www.cac.gov.cn/titlepic/112096/1120960188_1494551704063_title0h.jpg" alt="picture"/>
+    <h1 style="font-family:arial;color:darkslateblue;font-size:20px;">
+        {% if time %}<p>查询用时：{{ time }}</p>{% endif %}
+        {% if searchtext %}<p>你搜索的内容为：</p>
+        <p id="calendarnav">{{ searchtext }}</p>{% endif %}
+    </h1>
+    <ul id="content">
+        {% for file in filelist %}
+            <li><a href="{% url 'info' file.id %}">{{ file.head }}</a></li>
+        {% endfor %}
+    </ul>
+{% paginate %}
+</body>
+<script>
+	var content = document.getElementById("content").innerHTML;
+	var s=document.getElementById("calendarnav").innerText;
+    var reg = new RegExp("(" + s + ")", "g");
+    var str = content;
+    var newstr = str.replace(reg, "<font color=#FF0000>$1</font>");
+	document.getElementById("content").innerHTML = newstr;
+</script>
+</html>
